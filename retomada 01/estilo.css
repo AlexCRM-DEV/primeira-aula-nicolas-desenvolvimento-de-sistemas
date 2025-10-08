@@ -1,0 +1,41 @@
+/* Classe ( . ) */
+/* ID     ( # ) */
+
+/*h1{ seletor de TAG
+    color: blue;
+} */
+
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+.cor-azul{
+    color: blue;
+    background-color: cyan;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.quadrado-verde{
+    background-color: green; /*cor de fundo*/
+    color: white; /*cor do texto*/
+    height: 150px; /*altura do elemento */
+    width: 150px; /*largura do elemento */
+    margin: 10px 0px 10px 0px; /*espaçamento externo, sentido horário*/
+    padding: 30px 0px 0px 10px; /*espaçamento interno, sentido horário */
+}
+
+.quadrado-roxo{
+    background-color: purple; /*cor de fundo*/
+    color: white; /*cor do texto*/
+    height: 150px; /*altura do elemento */
+    width: 150px; /*largura do elemento */
+}
+
+
+.alinhamento{
+    display: flex;
+    justify-content: center ;
+    align-items: center ;
+    height: 100vh;
+}
