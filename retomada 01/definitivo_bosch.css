@@ -1,0 +1,101 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.linha {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.quadrado-azul {
+    background-color: blue;
+    height: 200px;
+    width: 200px;
+    display: flex;
+    position: relative;
+}
+
+.quadrado-laranja {
+    background-color: orange;
+    height: 50px;
+    width: 50px;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.alinha-coluna {
+    flex-direction: column;
+}
+
+.center-center {
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-start-center {
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.flex-end-center {
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.space-between {
+    justify-content: space-between;
+}
+
+
+
+.linha-final{
+    justify-content: end;
+}
+
+.coluna-final{
+    align-items: end;
+}
+
+.linha-meio{
+    justify-content: center;
+}
+
+.meio{
+    align-items: center;
+    align-self: center;
+}
+
+.final{
+    align-self: flex-end;
+}
+
+.meio-meio{
+    align-self: start;
+    justify-self: end;
+    
+}
+
+.linha{
+    height: 33.3333%;
+}
+
+.flex-coluna{
+    flex-direction: column;
+}
