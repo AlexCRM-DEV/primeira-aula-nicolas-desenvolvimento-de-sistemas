@@ -6,7 +6,7 @@
   <title>Login</title>
   <link rel="stylesheet" href="style.css">
 
-  <style>
+<!--  <style>
     body {
       background-image: url('https://wallpapers.com/images/hd/1920x1080-red-wallpapers-f6nvhm4pj4jzq8dx.jpg');
       background-size: cover;
@@ -15,7 +15,7 @@
       margin: 0;
       height: 100vh;
     }
-  </style>
+  </style> -->
 </head>
 <body>
   <div class="container">
@@ -55,6 +55,8 @@
       </form>
     </div>
   </div>
+
+<body class="fundo"></body>
 
   <script src="java.js"></script>
 </body>
