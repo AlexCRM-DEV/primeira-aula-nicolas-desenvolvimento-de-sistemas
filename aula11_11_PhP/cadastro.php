@@ -18,6 +18,7 @@
   </style> -->
 </head>
 <body>
+<form action="" method="POST">
   <div class="container">
 
     <!-- Lado esquerdo - Login -->
@@ -67,7 +68,7 @@
       </form>
     </div>
   </div>
-
+</form>
 <body class="fundo"></body>
 
   <script src="java.js"></script>
