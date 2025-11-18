@@ -31,12 +31,12 @@
     <!-- Lado direito - Cadastro -->
     <div class="register-side">
       <h2>Crie sua conta</h2>
-      <form id="formCadastro">
+      <form id="formCadastro" action="process.php" method="POST">
         <div class="input-group">
           <label for="nome">Nome</label>
           <div class="input-box">
             <img src="./user-add def def.png" alt="">
-            <input type="text" id="nome" placeholder="Digite seu nome" required>
+            <input type="text" id="nome" placeholder="Digite seu nome" required name="nome">
           </div>
         </div>
 
@@ -44,7 +44,7 @@
           <label for="email">E-mail</label>
           <div class="input-box">
             <img src="./envelope def def.png" alt="">
-            <input type="email" id="email" placeholder="Digite seu e-mail" required>
+            <input type="email" id="email" placeholder="Digite seu e-mail" required name="email">
           </div>
         </div>
 
@@ -52,7 +52,7 @@
           <label for="senha">Senha</label>
           <div class="input-box">
             <img src="./lock def def.png" alt="">
-            <input type="password" id="senha" placeholder="Digite sua senha" required>
+            <input type="password" id="senha" placeholder="Digite sua senha" required name="password">
           </div>
         </div>
 
@@ -60,7 +60,7 @@
           <label for="confirmarSenha">Confirme sua senha</label>
           <div class="input-box">
             <img src="./verificacao-de-cadeado.png" alt="">
-            <input type="password" id="confirmarSenha" placeholder="Confirme sua senha" required>
+            <input type="password" id="confirmarSenha" placeholder="Confirme sua senha" required name="confirm_password">
           </div>
         </div>
 
