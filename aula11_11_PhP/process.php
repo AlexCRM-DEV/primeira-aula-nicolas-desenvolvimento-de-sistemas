@@ -9,11 +9,11 @@ $confirm_password = $_POST['confirm_password'];
 
 $sql = "INSERT INTO usuario (email, password) VALUES ('$email', '$password')";
 
-if($conn->query($sql) === TRUE){
-    echo "Usuário cadastrado com sucesso!";
-}
-else{
-    echo "Erro: " . $sql . "<br>" . $conn->error;
+if (mysqli_query($conn, $sql)) {
+    header("Location: login.php");
+    exit;
+} else {
+    $erro = "Erro ao cadastrar!";
 }
 
 $conn->close();
