@@ -1,61 +1,14 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <title>NextOrder - Sistema de Gerenciamento de Pedidos</title>
-    <style>
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background-color: #f4f6f8;
-            margin: 0;
-            padding: 0;
-        }
-
-        .cabecalho {
-            background-color:rgb(31, 48, 73);
-            color: #ffffff;
-            padding: 20px;
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .cabecalho h1 {
-            margin: 0;
-            font-size: 26px;
-        }
-
-        .cabecalho p {
-            margin: 6px 0 0;
-            font-size: 14px;
-            color: #d1d5db;
-        }
-
-        .conteudo {
-            width: 90%;
-            max-width: 900px;
-            margin: 0 auto;
-            background-color: #ffffff;
-            padding: 20px;
-            border-radius: 6px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-    </style>
-</head>
-<body>
-
 <div class="cabecalho">
-    <h1>Sistema de Gerenciamento de Pedidos – NextOrder</h1>
-    <p>Curso Técnico em Informática</p>
+    <h1>NextOrder - Gerenciamento de Pedidos</h1>
+    <p>Curso Técnico em Desenvolvimento de Sistemas</p>
     <p>Aluno: <strong>Alex</strong></p>
 </div>
 
 <div class="conteudo">
 
-
-
 <?php
 
-// Classe Produto
+// Classe do produto
 class Produto {
     private $nome;
     private $preco;
@@ -84,95 +37,91 @@ class Produto {
     }
 }
 
-// Classe abstrata Cliente
+
+// Classe pai do cliente
 abstract class Cliente {
     protected $nome;
-    protected $tipoCliente;
     protected $desconto;
 
     public function __construct($nome) {
         $this->nome = $nome;
-        $this->setTipoCliente();
+        $this->definirDesconto();
     }
 
-    abstract protected function setTipoCliente();
-
-    public function getNome() {
-        return $this->nome;
-    }
-
-    public function getDesconto() {
-        return $this->desconto;
-    }
+    abstract protected function definirDesconto();
 
     public function aplicarDesconto($valor) {
         return $valor - ($valor * $this->desconto);
     }
 }
 
-// Classe Cliente Comum
+
+// Cliente comum tem desconto menor
 class ClienteComum extends Cliente {
-    
-    protected function setTipoCliente() {
-        $this->tipoCliente = "Comum";
-        $this->desconto = 0.05; // 5% de desconto para clientes comuns
+
+    protected function definirDesconto() {
+        $this->desconto = 0.05;
     }
 }
 
-// Classe Cliente Premium
+
+// Cliente premium tem desconto maior
 class ClientePremium extends Cliente {
 
-    protected function setTipoCliente() {
-        $this->tipoCliente = "Premium";
-        $this->desconto = 0.10; // 10% de desconto para clientes premium
+    protected function definirDesconto() {
+        $this->desconto = 0.10;
     }
 }
 
-// Classe Pedido
+
+// Classe do pedido
 class Pedido {
-    private $produtos = [];
+    private $produtos;
     private $cliente;
-    private $status;
-    
+    private $status = "aberto";
+
     public function __construct(Cliente $cliente) {
         $this->cliente = $cliente;
-        $this->status = 'aberto'; // Status inicial do pedido
     }
 
-    public function adicionarProduto(Produto $produto, $quantidade) {// Verifica se a quantidade solicitada é menor ou igual ao estoque
+    public function adicionarProduto(Produto $produto, $quantidade) {
         if ($produto->getQuantidade() >= $quantidade) {
-            $produto->setQuantidade($produto->getQuantidade() - $quantidade);
-            $this->produtos[] = ['produto' => $produto, 'quantidade' => $quantidade];
+            $produto->setQuantidade(
+                $produto->getQuantidade() - $quantidade
+            );
+
+            $this->produtos[] = [
+                "produto" => $produto,
+                "quantidade" => $quantidade
+            ];
         } else {
-            echo "Quantidade indisponível para o produto: " . $produto->getNome() . "<br>";
+            echo "Não tem estoque suficiente de {$produto->getNome()} <br>";
         }
     }
 
     public function calcularTotal() {
         $total = 0;
+
         foreach ($this->produtos as $item) {
-            $total += $item['produto']->getPreco() * $item['quantidade'];
+            $total += $item["produto"]->getPreco() * $item["quantidade"];
         }
+
         return $this->cliente->aplicarDesconto($total);
     }
 
     public function finalizarPedido() {
-        if ($this->status !== 'aberto') {
-            echo "Pedido já foi finalizado ou cancelado.<br>";
-            return;
-        }
-        $this->status = 'pago'; // Atualiza o status do pedido para 'pago'
-        echo "Pedido finalizado. Total a pagar: R$" . number_format($this->calcularTotal(), 2, ',', '.') . "<br>";
+        $this->status = "pago";
+        echo "Total do pedido: R$ " .
+             number_format($this->calcularTotal(), 2, ",", ".") .
+             "<br>";
     }
 
     public function cancelarPedido() {
-        $this->status = 'cancelado';
-        echo "Pedido cancelado.<br>";
+        $this->status = "cancelado";
     }
 
     public function enviarPedido() {
-        $this->status = 'enviado';
-        echo "Pedido enviado.<br>";
+        $this->status = "enviado";
     }
 
     public function getStatus() {
@@ -181,77 +130,69 @@ class Pedido {
 }
 
 
-$produto1 = new Produto("Camiseta", 50.00, 20);
-$produto2 = new Produto("Tênis", 180.00, 10);
-$produto3 = new Produto("Boné", 35.00, 30);
-$produto4 = new Produto("Calça Jeans", 120.00, 15);
-$produto5 = new Produto("Jaqueta", 250.00, 8);
-$produto6 = new Produto("Mochila", 90.00, 12);
+// Produtos cadastrados
+$produto1 = new Produto("Camiseta", 50, 20);
+$produto2 = new Produto("Tênis", 180, 10);
+$produto3 = new Produto("Boné", 35, 30);
+$produto4 = new Produto("Calça Jeans", 120, 15);
+$produto5 = new Produto("Jaqueta", 250, 8);
+$produto6 = new Produto("Mochila", 90, 12);
 
 
-$cliente1 = new ClienteComum("João");
-$cliente2 = new ClientePremium("Maria");
-$cliente3 = new ClienteComum("Carlos");
-$cliente4 = new ClientePremium("Ana");
-$cliente5 = new ClienteComum("Fernanda");
+// Clientes
+$nicolas   = new ClienteComum("Nicolas");
+$fernando  = new ClientePremium("Fernando");
+$lucas     = new ClienteComum("Lucas");
+$marcio    = new ClientePremium("Marcio");
 
 
-$pedidoJoao = new Pedido($cliente1);
-$pedidoMaria = new Pedido($cliente2);
-$pedidoCarlos = new Pedido($cliente3);
-$pedidoAna = new Pedido($cliente4);
-$pedidoFernanda = new Pedido($cliente5);
+// Pedidos
+$pedidoNicolas  = new Pedido($nicolas);
+$pedidoFernando = new Pedido($fernando);
+$pedidoLucas    = new Pedido($lucas);
+$pedidoMarcio   = new Pedido($marcio);
 
-// Pedido do João
-$pedidoJoao->adicionarProduto($produto1, 2); // 2 camisetas
-$pedidoJoao->adicionarProduto($produto3, 1); // 1 boné
 
-// Pedido da Maria
-$pedidoMaria->adicionarProduto($produto2, 1); // 1 tênis
-$pedidoMaria->adicionarProduto($produto6, 1); // 1 mochila
+// Adicionando produtos
+$pedidoNicolas->adicionarProduto($produto1, 2);
+$pedidoNicolas->adicionarProduto($produto3, 1);
 
-// Pedido do Carlos
-$pedidoCarlos->adicionarProduto($produto4, 1); // 1 calça jeans
-$pedidoCarlos->adicionarProduto($produto3, 2); // 2 bonés
+$pedidoFernando->adicionarProduto($produto2, 1);
+$pedidoFernando->adicionarProduto($produto6, 1);
 
-// Pedido da Ana
-$pedidoAna->adicionarProduto($produto5, 1); // 1 jaqueta
-$pedidoAna->adicionarProduto($produto1, 1); // 1 camiseta
+$pedidoLucas->adicionarProduto($produto4, 1);
+$pedidoLucas->adicionarProduto($produto3, 2);
 
-// Pedido da Fernanda
-$pedidoFernanda->adicionarProduto($produto6, 2); // 2 mochilas
+$pedidoMarcio->adicionarProduto($produto5, 1);
+$pedidoMarcio->adicionarProduto($produto1, 1);
 
-echo "<h3>--- Pedido de João ---</h3>";
-$pedidoJoao->finalizarPedido();
 
-echo "<h3>--- Pedido de Maria ---</h3>";
-$pedidoMaria->finalizarPedido();
+// Finalizando pedidos
+echo "<h3>Pedido do Nicolas</h3>";
+$pedidoNicolas->finalizarPedido();
 
-echo "<h3>--- Pedido de Carlos ---</h3>";
-$pedidoCarlos->finalizarPedido();
+echo "<h3>Pedido do Fernando</h3>";
+$pedidoFernando->finalizarPedido();
 
-echo "<h3>--- Pedido de Ana ---</h3>";
-$pedidoAna->finalizarPedido();
+echo "<h3>Pedido do Lucas</h3>";
+$pedidoLucas->finalizarPedido();
 
-echo "<h3>--- Pedido de Fernanda ---</h3>";
-$pedidoFernanda->finalizarPedido();
+echo "<h3>Pedido do Marcio</h3>";
+$pedidoMarcio->finalizarPedido();
 
-echo "<h3>--- Atualização de Status ---</h3>";
 
-$pedidoJoao->cancelarPedido();      // João cancelou
-$pedidoMaria->enviarPedido();       // Maria recebeu envio
-$pedidoAna->enviarPedido();         // Ana recebeu envio
+// Mudança de status
+$pedidoNicolas->cancelarPedido();
+$pedidoFernando->enviarPedido();
+$pedidoMarcio->enviarPedido();
 
-echo "<h3>--- Status Final dos Pedidos ---</h3>";
-
-echo "João: " . $pedidoJoao->getStatus() . "<br>";
-echo "Maria: " . $pedidoMaria->getStatus() . "<br>";
-echo "Carlos: " . $pedidoCarlos->getStatus() . "<br>";
-echo "Ana: " . $pedidoAna->getStatus() . "<br>";
-echo "Fernanda: " . $pedidoFernanda->getStatus() . "<br>";
+echo "<h3>Status final</h3>";
+echo "Nicolas: {$pedidoNicolas->getStatus()} <br>";
+echo "Fernando: {$pedidoFernando->getStatus()} <br>";
+echo "Lucas: {$pedidoLucas->getStatus()} <br>";
+echo "Marcio: {$pedidoMarcio->getStatus()} <br>";
 
 ?>
-
 
 </div>
 </body>
