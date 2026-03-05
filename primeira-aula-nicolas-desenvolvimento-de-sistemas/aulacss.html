@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let variavel_let = 5; //variavel de escopo (dentro) local
+        var variavel_var = "texto"; //variavel escopo (dentro e fora) global
+        const variavel_const = true; //variavel do tipo constante -> valor inalteravel
+
+if(variavel_let == "5"){
+    console.log("É igual")
+}
+else{
+    console.log("É diferente")
+}
+
+
+function somar(x, y, z){
+    return x + y + z;
+}
+
+function subtrair(x, y, z){
+    return x - y - z;
+}
+
+function dividir(x, y){
+    if(x == 0 || y == 0){
+        return "error"
+    }
+    else{
+        return x / y
+    }
+}
+
+function multiplicar(x, y, z){
+    return x * y * z;
+}
+console.log(somar(10,10,10));
+console.log(subtrair(30,5,5));
+console.log(dividir(0,2));
+console.log(multiplicar(5,5,5));
+    </script>
+</body>
+</html>

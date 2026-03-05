@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Página de Login e Cadastro</title>
+  <link rel="stylesheet" href="style.css">
+
+  <!--<style>
+    body {
+      background-image: url('https://wallpapers.com/images/hd/1920x1080-red-wallpapers-f6nvhm4pj4jzq8dx.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      margin: 0;
+      height: 100vh;
+    }
+  </style> -->
+</head>
+<body>
+<form action="" method="POST">
+  <div class="container">
+
+    <!-- Lado esquerdo - Login -->
+    <div class="login-side">
+      <h2>Bem-vindo de volta</h2>
+      <p>Acesse sua conta agora</p>
+      <button id="btnLogin">Entrar</button>
+    </div>
+
+    <!-- Lado direito - Cadastro -->
+    <div class="register-side">
+      <h2>Crie sua conta</h2>
+      <form id="formCadastro" action="process.php" method="POST">
+        <div class="input-group">
+          <label for="nome">Nome</label>
+          <div class="input-box">
+            <img src="./user-add def def.png" alt="">
+            <input type="text" id="nome" placeholder="Digite seu nome" required name="nome">
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="email">E-mail</label>
+          <div class="input-box">
+            <img src="./envelope def def.png" alt="">
+            <input type="email" id="email" placeholder="Digite seu e-mail" required name="email">
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="senha">Senha</label>
+          <div class="input-box">
+            <img src="./lock def def.png" alt="">
+            <input type="password" id="senha" placeholder="Digite sua senha" required name="password">
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="confirmarSenha">Confirme sua senha</label>
+          <div class="input-box">
+            <img src="./verificacao-de-cadeado.png" alt="">
+            <input type="password" id="confirmarSenha" placeholder="Confirme sua senha" required name="confirm_password">
+          </div>
+        </div>
+
+        <button type="submit">Cadastrar</button>
+      </form>
+    </div>
+  </div>
+</form>
+<body class="fundo"></body>
+
+  <script src="java.js"></script>
+</body>
+</html>

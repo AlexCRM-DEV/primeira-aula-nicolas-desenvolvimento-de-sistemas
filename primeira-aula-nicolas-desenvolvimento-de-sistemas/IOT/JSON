@@ -1,0 +1,72 @@
+{
+    "biblioteca": {
+        "autores": [
+            {
+                "id": 1,
+                "nome": "George Orwell",
+                "ano_nascimento": 1903,
+                "pais": "Reino Unido",
+                "livros": [
+                    {
+                        "id": 101,
+                        "titulo": "1984",
+                        "ano": 1949,
+                        "genero": "Distopia",
+                        "autor_id": 1
+                    },
+                    {
+                        "id": 102,
+                        "titulo": "A Revolução dos Bichos",
+                        "ano": 1945,
+                        "genero": "Sátira política",
+                        "autor_id": 1
+                    }
+                ]
+            },
+            {
+                "id": 2,
+                "nome": "J. R. R. Tolkien",
+                "ano_nascimento": 1892,
+                "pais": "Reino Unido",
+                "livros": [
+                    {
+                        "id": 103,
+                        "titulo": "O Hobbit",
+                        "ano": 1937,
+                        "genero": "Fantasia",
+                        "autor_id": 2
+                    },
+                    {
+                        "id": 104,
+                        "titulo": "O Senhor dos Anéis",
+                        "ano": 1954,
+                        "genero": "Fantasia",
+                        "autor_id": 2
+                    }
+                ]
+            },
+            {
+                "id": 3,
+                "nome": "Yuval Noah Harari",
+                "ano_nascimento": 1976,
+                "pais": "Israel",
+                "livros": [
+                    {
+                        "id": 105,
+                        "titulo": "Sapiens",
+                        "ano": 2011,
+                        "genero": "História",
+                        "autor_id": 3
+                    },
+                    {
+                        "id": 106,
+                        "titulo": "Homo Deus",
+                        "ano": 2015,
+                        "genero": "Futurismo",
+                        "autor_id": 3
+                    }
+                ]
+            }
+        ]
+    }
+}
